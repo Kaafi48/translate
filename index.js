@@ -8,6 +8,9 @@ const changeBtn = document.querySelector(".change-btn");
 const maxAvailable = document.querySelector(".max-available");
 const translateBtn = document.querySelector(".translate"); 
 const resultInput = document.querySelectorAll("#lng-input")[1]; 
+const speakBtn = document.getElementById("speak-btn");
+const copyBtn = document.getElementById("copy-btn");
+ 
 
 // --- 2. DYNAMIC LANGUAGES LOAD ---
 const languages = [
@@ -181,6 +184,12 @@ if (SpeechRecognition) {
             recognition.start();
             lngInput.placeholder = "Waan ku dhageysanayaa...";
             micBtn.style.color = "yellow";
+            micBtn.style.backgroundColor = "#3b78ad";
+             setTimeout(() => {
+           
+            micBtn.style.color = "#fff";
+             micBtn.style.backgroundColor = "#da0000";
+        }, 4000);
         } catch (e) {
             console.log("Mic error ama mar hore ayuu furnaa");
         }
@@ -247,3 +256,79 @@ changeBtn.addEventListener("click", () => {
     [lngInput.value, resultInput.value] = [resultInput.value, lngInput.value];
     maxAvailable.textContent = `${lngInput.value.length}/500`;
 });
+
+// speak
+speakBtn.addEventListener("click", () => {
+    const text = resultInput.value;
+    if (!text) return;
+
+    window.speechSynthesis.cancel(); // Jooji hadalkii hore haddii uu socday
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = toSelect.value; 
+    window.speechSynthesis.speak(utterance);
+});
+
+//  CLIPBOARD 
+copyBtn.addEventListener("click", () => {
+    const text = resultInput.value;
+    if (!text) return;
+
+    navigator.clipboard.writeText(text).then(() => {
+        // Beddel icon-ka si kumeel-gaar ah (Feedback)
+        const originalClass = copyBtn.className;
+        copyBtn.className = "fa-solid fa-check";
+        copyBtn.style.color = "#27ae60";
+        copyBtn.style.backgroundColor = "#ffffff";
+
+        setTimeout(() => {
+            copyBtn.className = originalClass;
+            copyBtn.style.color = "#fff";
+              copyBtn.style.backgroundColor = "#da0000";
+        }, 2000);
+    }).catch(err => {
+        console.error("Copy failed", err);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// speakBtn.addEventListener("click", () => {
+//     const textToSpeak = resultInput.value; // Qoraalka turjuman soo qaad
+//     if (textToSpeak !== "") {
+//         const speech = new SpeechSynthesisUtterance(textToSpeak);
+//         speech.lang = toSelect.value; // Luuqadda loo turjumay ku hadal
+//         window.speechSynthesis.speak(speech);
+//     }
+// });;
+
+// copyBtn.addEventListener("click", () => {
+//     const textToCopy = resultInput.value; // Qoraalka turjuman soo qaad
+//     if (textToCopy !== "") {
+//         navigator.clipboard.writeText(textToCopy); // Koobi gareey
+//         alert("Waa la koobiyeeyay!");
+//     }
+// });
