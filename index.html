@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="language">
+            <div class="first-language">
+                <div class="languages">
+                    <select id="from-lng"></select>
+                    <i class="fa-solid fa-microphone" class="listening" id="micBtn"></i>
+                </div>
+                <input type id="lng-input" placeholder="Type Something To Translate... " maxlength=" 500" />
+                <div class="ftr-trns">
+                    <p class="max-available">0/500</p>
+                    <p class="clear">Clear Text</p>
+                </div>
+                <div class="change-btn">
+                    <i class="fa-solid fa-left-right"></i>
+                </div>
+            </div>
+            <!-- -------------------------------------------- -->
+            <div class="second-language">
+                <div class="languages">
+                    <select id="to-lng"></select>
+                    <div class="lgn-icon">
+                        <i class="fa-solid fa-volume-low"></i>
+                        <i class="fa-solid fa-copy"></i>
+                    </div>
+                </div>
+                <input type="text" id="lng-input" placeholder="Translate..." />
+                <div class="ftr-trns">
+                    <p class="translate">Translate</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/index.js"></script>
+</body>
+
+</html>
+
+lorem100
